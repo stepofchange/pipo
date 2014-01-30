@@ -7,6 +7,7 @@ gem 'pg', '0.17.1'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
+gem 'bootstrap-sass', '~> 3.0.3.0'
 
 group :production do
   gem 'pg', '0.17.1'
