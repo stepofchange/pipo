@@ -3,14 +3,23 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.2'
 
 # Use sqlite3 as the database for Active Record
-gem 'pg'
+gem 'pg', '0.17.1'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
 group :production do
-  gem 'pg'
+  gem 'pg', '0.17.1'
   gem 'rails_12factor', '0.0.2'
+end
+
+group :test do
+  gem 'selenium-webdriver', '2.35.1'
+  gem 'capybara', '2.1.0'
+end
+
+group :development, :test do
+  gem 'rspec-rails', '2.13.1'
 end
 
 # Use Uglifier as compressor for JavaScript assets
