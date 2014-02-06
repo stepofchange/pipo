@@ -8,6 +8,9 @@ gem 'pg', '0.17.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 gem 'bootstrap-sass', '~> 3.0.3.0'
+gem "paperclip", "~> 3.0"
+gem 'cocaine', '0.3.2'
+
 
 group :production do
   gem 'pg', '0.17.1'
@@ -17,6 +20,7 @@ end
 group :test do
   gem 'selenium-webdriver', '2.35.1'
   gem 'capybara', '2.1.0'
+  gem 'factory_girl_rails'
 end
 
 group :development, :test do

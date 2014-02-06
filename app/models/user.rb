@@ -5,5 +5,7 @@ class User < ActiveRecord::Base
     validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, 
     					uniqueness: { case_sensitive: false }
     has_secure_password						
-    validates :password, length: { minimum: 6 }									
+    validates :password, length: { minimum: 6 }		
+    has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+    						
 end

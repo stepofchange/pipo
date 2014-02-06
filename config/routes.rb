@@ -1,8 +1,10 @@
 Pipo::Application.routes.draw do
+  resources :users
   root 'static_pages#home'
   get 'about' => 'static_pages#about'
   get 'help' => 'static_pages#help'
   get 'signup' => 'users#new'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
