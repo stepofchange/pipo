@@ -1,6 +1,7 @@
 Pipo::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :microposts, only: [:create, :destroy]
   root 'static_pages#home'
   get 'about' => 'static_pages#about'
   get 'help' => 'static_pages#help'
