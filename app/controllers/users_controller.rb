@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   before_action :signed_in_user,
                 only: [:index, :edit, :update, :destroy, :following, :followers]
   before_action :correct_user,   only: [:edit, :update]
-  before_action :skip_password_attribute, only: :update
 
   def new
   	@user = User.new
@@ -46,7 +45,8 @@ class UsersController < ApplicationController
   
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(user_edit_params)
+    if @user.update_attributes(user_params)
+      @user.updating_password = true
       flash[:success] = "Profile updated"
       redirect_to @user
     else
@@ -81,23 +81,10 @@ private
 	                                   :password_confirmation)
 	end
 
-  def user_edit_params
-    params.require(:user).permit(:avatar, :name, :email)
-  end
-
-  def password_params
-    params.require(:user).permit(:password, :password_confirmation)
-  end  
-
   def correct_user
       @user = User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)
   end
 
-  def skip_password_attribute
-    if password_params.blank?
-      params.except!(password_params)
-    end
-  end
 
 end

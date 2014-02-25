@@ -14,9 +14,14 @@ class User < ActiveRecord::Base
     validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, 
     					uniqueness: { case_sensitive: false }
     has_secure_password						
-    validates :password, length: { minimum: 6 }		
+    validates :password, length: { minimum: 6 }, :if => :should_validate_password?		
     has_attached_file :avatar,
      :styles => { :medium => "300x300>", :thumb => "100x100>", :small => "50x50" }
+    attr_accessor :updating_password
+
+    def should_validate_password?
+      updating_password || new_record?
+    end
 
     def User.new_remember_token
       SecureRandom.urlsafe_base64
