@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :signed_in_user,
                 only: [:index, :edit, :update, :destroy, :following, :followers]
   before_action :correct_user,   only: [:edit, :update]
+  before_filter :skip_password_attribute, only: :update
 
   def new
   	@user = User.new
@@ -87,6 +88,12 @@ private
   def correct_user
       @user = User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)
+  end
+
+  def skip_password_attribute
+    if params[:password].blank? && params[:password_validation].blank?
+      params.except!(:password, :password_validation)
+    end
   end
 
 end
