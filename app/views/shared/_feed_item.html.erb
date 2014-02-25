@@ -2,7 +2,7 @@
 <div class="user">
       <%= link_to feed_item.user.name, feed_item.user %>
     </div>
-  <%= image_tag micropost.image.url(:medium), :class => 'img-thumbnail' %>  
+  <%= image_tag feed_item.image.url(:medium), :class => 'img-thumbnail' %> 
     <span class="content"><%= feed_item.content %></span>
     <span class="timestamp">
       Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
