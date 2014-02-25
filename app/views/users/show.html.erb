@@ -1,15 +1,40 @@
+<% if signed_in? %>
 <% provide(:title, @user.name) %>
 <div class="row">
-<h1>
-  <%= @user.name %>
-  <%= image_tag @user.avatar.url(:medium) %>
-</h1>
-<div class="span8">
+  <div class="col-md-6">
+<div class="fixed">
+<div class="col-md-6">
+      <section>
+        <%= image_tag @user.avatar.url(:medium), :class => 'img-thumbnail' %> 
+      </section>
+      </div>
+      <div class="col-md-6">
+      <section>
+        <%= @user.name %>
+      </section>
+      <section>
+        <%= render 'shared/stats' %>
+      </section>
+      <section>
+        <%= render 'shared/micropost_form' if @user.name==current_user.name %>
+      </section>
+      </div>
+  </div>
+  </div>
+  <div class="col-md-6">
+    <%= render 'follow_form' if signed_in? %>
     <% if @user.microposts.any? %>
-      <h3>Microposts (<%= @user.microposts.count %>)</h3>
       <ol class="microposts">
         <%= render @microposts %>
       </ol>
     <% end %>
   </div>
 </div>  
+<% else %>
+<% provide(:title, "Home") %>
+  <div class="center hero-unit">
+    <h1>Welcome to the Pipo</h1>
+    <%= link_to "Sign up now!", signup_path,
+                                class: "btn btn-large btn-primary" %>
+  </div>
+<% end %>

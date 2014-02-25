@@ -34,8 +34,9 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-size: 3em;
   letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  text-align: left;
 }
 
 h2 {
@@ -157,4 +158,85 @@ aside {
     height: 100px;
     margin-bottom: 5px;
   }
+}
+
+/* sidebar */
+
+.stats {
+  overflow: auto;
+  a {
+    float: left;
+    padding: 0 10px;
+    border-left: 1px solid $lightGray;
+    color: gray;
+    &:first-child {
+      padding-left: 0;
+      border: 0;
+    }
+    &:hover {
+      text-decoration: none;
+      color: #feab34;
+    }
+  }
+  strong {
+    display: block;
+  }
+}
+
+.user_avatars {
+  overflow: auto;
+  margin-top: 10px;
+  .gravatar {
+    margin: 1px 1px;
+  }
+}
+
+.fixed{
+  position: fixed;
+  overflow-y: visible; 
+}
+
+.feed_bord{
+  border-left: 1px solid $lightGray;
+}
+
+.posrbord{
+  border: 1px solid $lightGray;
+}
+
+.username{
+  text-align: center;
+}
+
+.postusername{
+  float: right;
+  color: $lightGray;
+}
+
+.userav{
+  text-align: center;
+}
+  
+.user_show{
+  background-color: #ebca43;
+}  
+
+.col-md-4{
+  margin-top: 20px;
+}
+
+.unfolloving_c{
+  color: red;
+}
+
+.folloving_c{
+  color: green;
+}
+
+.you{
+  color: yellow;
+}
+
+.alert-error{
+  color: red;
 }

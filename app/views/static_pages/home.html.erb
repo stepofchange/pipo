@@ -1,33 +1,51 @@
 <% provide(:title, 'Home') %>
 <% if signed_in? %>
   <div class="row">
-    <aside class="span4">
+  
+<div class="col-md-6">
+<div class="fixed">
+<div class="col-md-6">
       <section>
         <%= render 'shared/user_info' %>
+      </section>
+      </div>
+      <div class="col-md-6">
+      <section>
+        <%= link_to current_user.name, current_user %>
+      </section>
+      <section>
+        <%= render 'shared/stats' %>
       </section>
       <section>
         <%= render 'shared/micropost_form' %>
       </section>
-    </aside>
+      </div>
   </div>
-  <div class="span8">
-      <h3>Micropost Feed</h3>
+  </div>
+  <div class="col-md-6">
+  <div class="feed_bord">
       <%= render 'shared/feed' %>
-    </div>
+      </div>
   </div>
+  </div>
+
 <% else %>
-  <div class="center hero-unit">
-    <h1>Welcome to the Sample App</h1>
-
-    <h2>
-      This is the home page for the
-      <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-      sample application.
-    </h2>
-
-    <%= link_to "Sign up now!", signup_path,
-                                class: "btn btn-large btn-primary" %>
+<div class="row">
+  <% @microposts.each do |micropost| %>
+  
+  <div class="col-sm-6 col-md-4">
+  <div class="posrbord">
+  <span class="postusername">Posted by <%= micropost.user.name %></span></br>
+  <section>
+        <%= image_tag micropost.image.url(:medium), :class => 'img-thumbnail' %> 
+      </section>
+  <span class="content"><%= micropost.content %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(micropost.created_at) %> ago.
+  </span>
   </div>
+</div>
 
-  <%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
+  <% end %>
+  </div>
 <% end %>

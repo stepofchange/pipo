@@ -2,13 +2,35 @@
 <h1>All users</h1>
 
 <ul class="users">
+<div class="row">
+  
   <% @users.each do |user| %>
-    <li>
-      <%= image_tag user.avatar.url(:medium) %>
-      <%= link_to user.name, user %>
-      <% if current_user.admin? && !current_user?(user) %>
-      <%= link_to "delete", user, method: :delete,
-                                  data: { confirm: "You sure?" } %>
+  <div class="col-md-4">
+  <div class="user_show">
+  <section class="username">
+  	  <%= link_to user.name, user %>
+      <% unless current_user?(user) %>
+        <% if current_user.following?(user) %>
+          <div class="folloving_c">
+            following
+          </div>
+        <% else %>
+          <div class="unfolloving_c">
+            unfollowing
+          </div>
+        <% end %>
+      <% else %>
+        <div class="you">
+          you
+        </div>
       <% end %>
+  	  </section>
+  	  <section class="userav">
+      <%= image_tag user.avatar.url(:medium), :class => 'img-thumbnail' %> 
+      </section>
+      </div>    
+  </div>
   <% end %>
+  
+  </div>
 </ul>
