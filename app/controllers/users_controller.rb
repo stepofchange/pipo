@@ -85,14 +85,18 @@ private
     params.require(:user).permit(:avatar, :name, :email)
   end
 
+  def password_params
+    params.require(:user).permit(:password, :password_confirmation)
+  end  
+
   def correct_user
       @user = User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)
   end
 
   def skip_password_attribute
-    if params[:password].blank? && params[:password_validation].blank?
-      params.except!(:password, :password_validation)
+    if password_params.blank?
+      params.except!(password_params)
     end
   end
 
