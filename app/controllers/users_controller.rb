@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :signed_in_user,
                 only: [:index, :edit, :update, :destroy, :following, :followers]
   before_action :correct_user,   only: [:edit, :update]
-  before_filter :skip_password_attribute, only: :update
+  before_action :skip_password_attribute, only: :update
 
   def new
   	@user = User.new
