@@ -81,8 +81,7 @@ private
 	end
 
   def user_edit_params
-    params.require(:user).permit(:avatar, :name, :email, :password,
-                                     :password_confirmation)
+    params.require(:user).permit(:avatar, :name, :email)
   end
 
   def correct_user
